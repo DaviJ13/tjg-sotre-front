@@ -1,0 +1,225 @@
+.admin-page {
+  max-width: 1500px;
+  margin: auto;
+  padding: 40px;
+}
+
+.admin-page h1 {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 900;
+  margin-bottom: 40px;
+  letter-spacing: 1px;
+}
+
+.admin-form {
+  background: #111;
+  border: 1px solid #222;
+  border-radius: 20px;
+  padding: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 60px;
+}
+
+.admin-form textarea {
+  grid-column: 1 / -1;
+}
+
+.admin-form label {
+  grid-column: 1 / -1;
+  color: #ccc;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+}
+
+.admin-buttons {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 15px;
+}
+
+.admin-form input,
+.admin-form textarea,
+.admin-form select {
+  background: #181818;
+  border: 1px solid #2a2a2a;
+  color: white;
+  padding: 14px 16px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-family: inherit;
+  width: 100%;
+}
+
+.admin-form textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.admin-form input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.admin-buttons button {
+  flex: 1;
+  padding: 15px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 15px;
+  transition: .2s;
+}
+
+.admin-buttons button:first-child {
+  background: #29f800;
+  color: black;
+}
+
+.admin-buttons button:last-child {
+  background: #2a2a2a;
+  color: white;
+}
+
+.admin-buttons button:hover {
+  transform: translateY(-2px);
+}
+
+.admin-section-title {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #222;
+}
+
+.admin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.admin-card {
+  background: #111;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #1e1e1e;
+  display: flex;
+  flex-direction: column;
+  transition: transform .3s;
+}
+
+.admin-card:hover {
+  transform: translateY(-4px);
+}
+
+.admin-card-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  flex-shrink: 0;
+}
+
+.admin-card-placeholder {
+  width: 100%;
+  height: 220px;
+  background: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #444;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  flex-shrink: 0;
+}
+
+.admin-card-body {
+  padding: 16px 18px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.admin-card-body h3 {
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.admin-card-body .admin-card-cat {
+  color: #777;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+
+.admin-card-body .admin-card-price {
+  color: #858585  ;
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 6px;
+}
+
+.admin-card-body .admin-card-stock {
+  color: #666;
+  font-size: 13px;
+}
+
+.admin-card-actions {
+  display: flex;
+  border-top: 1px solid #1e1e1e;
+}
+
+.admin-card-actions button {
+  flex: 1;
+  padding: 14px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  transition: opacity .2s;
+}
+
+.admin-card-actions button:hover {
+  opacity: .85;
+}
+
+.admin-card-actions button:first-child {
+  background: #29f800;
+  color: black;
+}
+
+.admin-card-actions button:last-child {
+  background: #b91c1c;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .admin-page {
+    padding: 20px 16px;
+  }
+
+  .admin-form {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-form textarea {
+    grid-column: 1;
+  }
+
+  .admin-buttons {
+    grid-column: 1;
+    flex-direction: column;
+  }
+}
