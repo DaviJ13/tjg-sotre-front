@@ -1,49 +1,77 @@
 .home {
-  max-width: 1400px;
+  max-width: 1700px;
   margin: 0 auto;
-  padding: 30px;
+  padding: 30px 40px;
 }
 
-.banner {
-  height: 450px;
+.store-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 40px;
+  align-items: start;
+}
 
-  background:
-    linear-gradient(
-      rgba(0, 0, 0, 0.6),
-      rgba(0, 0, 0, 0.6)
-    ),
-    url("https://images.unsplash.com/photo-1574629810360-7efbbe195018");
-
-  background-size: cover;
-  background-position: center;
-
+.sidebar {
+  position: sticky;
+  top: 90px;
+  align-self: start;
+  background: #fff;
+  border: 1px solid #ececec;
   border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .05);
+  height: fit-content;
+}
 
+.store-content {
+  min-width: 0;
+}
+
+/* ─── Seções por categoria ─── */
+.category-sections {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  text-align: center;
-
-  margin-bottom: 40px;
+  gap: 50px;
 }
 
-.banner h1 {
-  font-size: 3rem;
-  margin-bottom: 15px;
+.category-section {
+  scroll-margin-top: 110px;
 }
 
-.banner p {
-  font-size: 1.2rem;
+.category-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #111;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #111;
+  margin-bottom: 24px;
 }
 
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(
-    auto-fill,
-    minmax(320px, 1fr)
-  );
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 25px;
-  margin-top: 30px;
+}
+
+.empty-msg {
+  color: #888;
+  font-size: 1.1rem;
+  margin-top: 20px;
+}
+
+@media (max-width: 900px) {
+  .home {
+    padding: 20px 16px;
+  }
+
+  .store-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: relative;
+    top: 0;
+  }
 }

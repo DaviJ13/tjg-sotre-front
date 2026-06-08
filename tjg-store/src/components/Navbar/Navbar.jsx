@@ -1,50 +1,82 @@
 import { Link } from "react-router-dom";
+import { FaUser, FaShoppingCart, FaSignOutAlt } from "react-icons/fa";
 import { useAuth } from "../../contexts/AuthContext";
+import { useEffect, useState } from "react";
+import patch from "../../assets/patch.png";
 import "./Navbar.css";
 
 export default function Navbar() {
-  const { user, logout } =
-    useAuth();
+  const { user, isAdmin, logout } = useAuth();
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 100);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="navbar">
-      <div className="navbar-container">
-        <Link
-          to="/"
-          className="navbar-logo"
-        >
-          TJG STORE
-        </Link>
+    <header className={`navbar${scrolled ? " shrink" : ""}`}>
+      <div className="navbar-top">
 
-        <nav className="navbar-menu">
-          <Link to="/">
-            Início
+        {/* Esquerda: TJG */}
+        <div className="navbar-brand">TJG</div>
+
+        {/* Centro: patch E links — ambos sempre no DOM, CSS anima */}
+        <div className="navbar-center">
+          <div className="navbar-patch">
+            <img src={patch} alt="TJG" />
+          </div>
+
+          <nav className="navbar-links-inline">
+            <a href="#top">Início</a>
+            <a href="https://trezefc.com.br" target="_blank" rel="noreferrer">
+              Treze FC
+            </a>
+            {isAdmin && <Link to="/admin">Painel</Link>}
+          </nav>
+        </div>
+
+        {/* Direita: ícones */}
+        <div className="navbar-actions">
+          <Link to="/carrinho" className="icon-btn">
+            <FaShoppingCart />
           </Link>
 
-          <Link to="/carrinho">
-            Carrinho
-          </Link>
+          <div className="user-menu">
+            <button className="icon-btn" onClick={() => setMenuOpen(!menuOpen)}>
+              <FaUser />
+            </button>
 
-          {user ? (
-            <>
-              <Link to="/admin">
-                Admin
-              </Link>
+            {menuOpen && (
+              <div className="dropdown">
+                {!user ? (
+                  <>
+                    <Link to="/login" onClick={() => setMenuOpen(false)}>Entrar</Link>
+                    <Link to="/cadastro" onClick={() => setMenuOpen(false)}>Criar Conta</Link>
+                  </>
+                ) : (
+                  <button onClick={logout}>
+                    <FaSignOutAlt />
+                    Sair
+                  </button>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
 
-              <button
-                className="logout-btn"
-                onClick={logout}
-              >
-                Sair
-              </button>
-            </>
-          ) : (
-            <Link to="/login">
-              Login
-            </Link>
-          )}
-        </nav>
       </div>
+
+      {/* Links embaixo — sempre no DOM, CSS anima altura e opacidade */}
+      <nav className="navbar-menu">
+        <a href="#top">Início</a>
+        <a href="https://trezefc.com.br" target="_blank" rel="noreferrer">
+          Treze FC
+        </a>
+        {isAdmin && <Link to="/admin">Painel</Link>}
+      </nav>
     </header>
   );
 }

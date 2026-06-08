@@ -1,81 +1,136 @@
 .admin-page {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 30px;
+  max-width: 1500px;
+  margin: auto;
+  padding: 40px;
 }
 
 .admin-page h1 {
-  margin-bottom: 30px;
+  text-align: center;
+  font-size: 38px;
+  margin-bottom: 40px;
 }
 
 .admin-form {
-  background: #1a1a1a;
-  padding: 25px;
-  border-radius: 16px;
+  background: #111;
+  border: 1px solid #222;
+
+  border-radius: 20px;
+
+  padding: 30px;
+
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  margin-bottom: 40px;
+  gap: 18px;
+
+  margin-bottom: 50px;
 }
 
 .admin-form input,
 .admin-form textarea,
 .admin-form select {
-  padding: 14px;
-  border: 1px solid #333;
-  border-radius: 10px;
-  background: #111;
+  background: #181818;
+  border: 1px solid #2a2a2a;
+
   color: white;
+
+  padding: 16px;
+
+  border-radius: 12px;
+
+  font-size: 15px;
 }
 
 .admin-form textarea {
   min-height: 120px;
+  resize: vertical;
 }
 
 .admin-buttons {
   display: flex;
-  gap: 10px;
+  gap: 15px;
 }
 
 .admin-buttons button {
-  padding: 14px;
+  flex: 1;
+
+  padding: 15px;
+
   border: none;
+
+  border-radius: 12px;
+
   cursor: pointer;
+
+  font-weight: bold;
+
+  transition: .3s;
+}
+
+.admin-buttons button:first-child {
+  background: #ffd000;
+  color: black;
+}
+
+.admin-buttons button:last-child {
+  background: #333;
+  color: white;
+}
+
+.admin-buttons button:hover {
+  transform: translateY(-2px);
 }
 
 .admin-grid {
   display: grid;
+
   grid-template-columns: repeat(
     auto-fill,
-    minmax(280px, 1fr)
+    minmax(300px, 1fr)
   );
-  gap: 20px;
+
+  gap: 25px;
 }
 
 .admin-card {
-  background: #1a1a1a;
-  border-radius: 16px;
+  background: #111;
+
+  border-radius: 20px;
+
   overflow: hidden;
+
+  border: 1px solid #222;
+
+  transition: .3s;
+}
+
+.admin-card:hover {
+  transform: translateY(-5px);
 }
 
 .admin-card img {
   width: 100%;
-  height: 220px;
+  height: 280px;
   object-fit: cover;
 }
 
 .admin-card h3 {
-  padding: 15px 15px 5px;
+  padding: 20px 20px 5px;
 }
 
 .admin-card p {
-  padding: 0 15px;
+  padding: 0 20px;
+  color: #999;
 }
 
 .admin-card span {
   display: block;
-  padding: 10px 15px;
+
+  padding: 15px 20px;
+
+  color: #ffd000;
+
   font-weight: bold;
+  font-size: 20px;
 }
 
 .admin-card-actions {
@@ -84,7 +139,22 @@
 
 .admin-card-actions button {
   flex: 1;
-  padding: 12px;
+
+  padding: 15px;
+
   border: none;
+
   cursor: pointer;
+
+  font-weight: bold;
+}
+
+.admin-card-actions button:first-child {
+  background: #e8e8e9;
+  color: black;
+}
+
+.admin-card-actions button:last-child {
+  background: #b91c1c;
+  color: white;
 }
