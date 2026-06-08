@@ -4,12 +4,13 @@ import { useCart } from "../../contexts/CartContext";
 import "./Carrinho.css";
 
 export default function Carrinho() {
-  const { cart, removeFromCart, updateQuantity } = useCart();
+  const { cart, removeFromCart, updateQuantity, clearCart } = useCart();
 
   const total = cart.reduce((acc, item) => acc + item.preco * item.quantidade, 0);
 
   function finalizarCompra() {
     alert("Compra simulada realizada com sucesso!");
+    clearCart();
   }
 
   return (
