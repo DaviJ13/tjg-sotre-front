@@ -8,13 +8,9 @@
 
 .category-header h3 {
   font-size: 1.4rem;
-
   color: #111;
-
   font-weight: 800;
-
   text-transform: uppercase;
-
   letter-spacing: 1px;
 }
 
@@ -26,30 +22,16 @@
 
 .category-list button {
   background: transparent;
-
   border: none;
-
   text-align: left;
-
   cursor: pointer;
-
   font-size: 18px;
-
   color: #444;
-
   transition: .2s;
-
   padding: 0;
 }
 
 .category-list button:hover {
   color: #111;
-
   transform: translateX(5px);
-}
-
-.category-list button.active {
-  color: #111;
-
-  font-weight: 700;
 }

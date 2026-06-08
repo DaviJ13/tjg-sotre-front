@@ -30,7 +30,7 @@ export default function Navbar() {
           </div>
 
           <nav className="navbar-links-inline">
-            <a href="#top">Início</a>
+            <Link to="/">Início</Link>
             <a href="https://trezefc.com.br" target="_blank" rel="noreferrer">
               Treze FC
             </a>
@@ -71,7 +71,7 @@ export default function Navbar() {
 
       {/* Links embaixo — sempre no DOM, CSS anima altura e opacidade */}
       <nav className="navbar-menu">
-        <a href="#top">Início</a>
+        <Link to="/">Início</Link>
         <a href="https://trezefc.com.br" target="_blank" rel="noreferrer">
           Treze FC
         </a>

@@ -8,14 +8,15 @@ import { useCart } from "../../contexts/CartContext";
 import CategoryFilter from "../../components/CategoryFilter/CategoryFilter";
 import "./Home.css";
 
-const CATEGORIAS = [
+const categorias = [
   "Todos",
   "Camisas",
-  "Regatas",
+  "Short",
   "Bonés",
   "Calças",
   "Bandeiras",
   "Adesivos",
+  "Acessórios",
 ];
 
 export default function Home() {
@@ -23,11 +24,9 @@ export default function Home() {
   const [busca, setBusca] = useState("");
   const [loading, setLoading] = useState(true);
   const [erro, setErro] = useState("");
-  const [categoria, setCategoria] = useState("Todos");
-
   const { addToCart } = useCart();
-
   const sectionRefs = useRef({});
+  const topoRef = useRef(null);
 
   useEffect(() => {
     carregarProdutos();
@@ -45,36 +44,27 @@ export default function Home() {
     }
   }
 
-  function handleCategoriaClick(cat) {
-    setCategoria(cat);
-
-    const target = cat === "Todos"
-      ? sectionRefs.current["Todos"]
-      : sectionRefs.current[cat];
-
-    if (target) {
-      const offset = 120; // altura do navbar
-      const top = target.getBoundingClientRect().top + window.scrollY - offset;
+  function scrollParaSecao(cat) {
+    if (cat === "Todos") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+    const el = sectionRefs.current[cat];
+    if (el) {
+      const offset = 110;
+      const top = el.getBoundingClientRect().top + window.scrollY - offset;
       window.scrollTo({ top, behavior: "smooth" });
     }
   }
 
-  const produtosFiltradosBusca = produtos.filter((p) =>
+  const produtosFiltrados = produtos.filter((p) =>
     p.nome?.toLowerCase().includes(busca.toLowerCase())
   );
 
-  const categoriasSemTodos = CATEGORIAS.filter((c) => c !== "Todos");
-  const grupos = categoriasSemTodos
-    .map((cat) => ({
-      cat,
-      items: produtosFiltradosBusca.filter((p) => p.categoria === cat),
-    }))
-    .filter((g) => g.items.length > 0);
-
-  const gruposVisiveis =
-    categoria === "Todos"
-      ? grupos
-      : grupos.filter((g) => g.cat === categoria);
+  const grupos = categorias.filter(c => c !== "Todos").map((cat) => ({
+    cat,
+    items: produtosFiltrados.filter((p) => p.categoria === cat),
+  })).filter((g) => g.items.length > 0);
 
   if (erro) {
     return (
@@ -92,13 +82,10 @@ export default function Home() {
     <>
       <Navbar />
 
-      <main className="home" id="top">
+      <main className="home" ref={topoRef} id="top">
         <div className="store-layout">
           <aside className="sidebar">
-            <CategoryFilter
-              categoria={categoria}
-              setCategoria={handleCategoriaClick}
-            />
+            <CategoryFilter setCategoria={scrollParaSecao} />
           </aside>
 
           <section className="store-content">
@@ -107,14 +94,11 @@ export default function Home() {
             {loading ? (
               <h2>Carregando...</h2>
             ) : (
-              <div
-                className="category-sections"
-                ref={(el) => (sectionRefs.current["Todos"] = el)}
-              >
-                {gruposVisiveis.length === 0 ? (
+              <div className="category-sections">
+                {grupos.length === 0 ? (
                   <p className="empty-msg">Nenhum produto encontrado.</p>
                 ) : (
-                  gruposVisiveis.map(({ cat, items }) => (
+                  grupos.map(({ cat, items }) => (
                     <div
                       key={cat}
                       className="category-section"
